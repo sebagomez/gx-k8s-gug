@@ -76,5 +76,5 @@ $ kubectl get svc -n gx29
 ```
 
 De la lista de servicios nos interesa el de la web app (appgx29-web-svc) y de ese servicio, el puerto mapeado con el 8080 del servicio.  
-Con ese puerto basta con poner esta url en el browser y así poder ver la lista de oradores: http://localhost:\<port\>/servlet/com.gx29.website.speakers
+Con ese puerto basta con poner esta url en el browser y así poder ver la lista de oradores: http://localhost:<port\>/servlet/com.gx29.website.speakers
 
