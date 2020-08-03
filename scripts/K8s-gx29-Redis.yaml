@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gx-redis
+  namespace: gx29
+  labels:
+    app: gx-redis
+    genby: genexus
+spec:
+  ports:
+    - port: 6379
+      name: tcp
+  selector:
+    app: gx-redis-app
+    tier: redis
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gx-redis-app
+  namespace: gx29
+  labels:
+    app: gx-redis-app
+    genby: genexus
+spec:
+  selector:
+    matchLabels:
+      app: gx-redis-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: gx-redis-app
+        genby: genexus
+        tier: redis
+    spec:
+      containers:
+      - image: redis:6.0-alpine
+        name: gx-redis
+        ports:
+        - containerPort: 6379
+          name: redis-port

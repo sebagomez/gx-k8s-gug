@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: appgx29-web-svc
+  namespace: gx29
+  labels:
+    app: appgx29-web-svc
+    genby: genexus
+    du: AppGX29_Web
+spec:
+  ports:
+    - port: 8080
+      name: http
+  selector:
+    app: appgx29-web-app
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appgx29-web-app-v1
+  namespace: gx29
+  annotations:
+    kubernetes.io/change-cause: "genexus/gx29_web:1.1"
+  labels:
+    app: appgx29-web-app
+    genby: genexus
+    du: AppGX29_Web
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appgx29-web-app
+      version: v1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: appgx29-web-app
+        genby: genexus
+        du: AppGX29_Web
+        version: v1
+    spec:
+      containers:
+      - image: genexus/gx29_web:1.1
+        name: appgx29-web
+        env:
+        - name: GX_COM_GX29_DEFAULT_DB_URL
+          value: jdbc:mysql://gx29-db:3306/GX29?useSSL=false
+        - name: GX_COM_GX29_DEFAULT_USER_ID
+          value: root
+        - name: GX_COM_GX29_DEFAULT_USER_PASSWORD
+          value: dbPassword
+        - name: GX_COM_GX29_GAM_DB_URL
+          value: jdbc:mysql://gx29-db:3306/GX29_gam?useSSL=false
+        - name: GX_COM_GX29_GAM_USER_ID
+          value: root
+        - name: GX_COM_GX29_GAM_USER_PASSWORD
+          value: dbPassword        
+        ports:
+        - containerPort: 8080
+          name: external-port
+        imagePullPolicy: Always
