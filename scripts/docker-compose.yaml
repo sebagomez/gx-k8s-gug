@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    image: genexus/gx29_web
+    container_name: appgx29-web-app
+    ports:
+     - "8888:8080"
+    environment:
+     - "GX_COM_GX29_DEFAULT_DB_URL=jdbc:mysql://gx29-db:3306/GX29?useSSL=false"
+     - "GX_COM_GX29_DEFAULT_USER_ID=root"
+     - "GX_COM_GX29_DEFAULT_USER_PASSWORD=dbPassword"
+     - "GX_COM_GX29_GAM_DB_URL=jdbc:mysql://gx29-db:3306/GX29_gam?useSSL=false"
+     - "GX_COM_GX29_GAM_USER_ID=root"
+     - "GX_COM_GX29_GAM_USER_PASSWORD=dbPassword"  
+    links:
+     - db
+  db:
+    image: genexus/gx29_db:1.0
+    container_name: gx29-db
+    ports:
+     - 9999:3306

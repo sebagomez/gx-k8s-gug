@@ -1,6 +1,8 @@
 # Introducción a Kubernetes con GeneXus
 
-Este repositorio contiene los scripts de las demos y las ppts de la charla con el mismo nombra dada para el Grupo Usuarios GeneXus el 4 Agosto de 2020.  
+Este repositorio contiene los scripts de las demos y las ppts de la charla Introducción a Kubernetes con GeneXus dada al Grupo Usuarios GeneXus el 4 Agosto de 2020.  
+
+=== Próximamente link al video ===
 
 ## Pasos previos
 
@@ -12,22 +14,29 @@ Una vez instalado y corriendo es necesario habilitar Kubernetes desde los settin
 
 ## Demo 1
 
-La Demo 1 fue simplemente levantar un container con la app web del GX29. Esta Docker image es pública y se encuentra en el repositorio GeneXus en Docker Hub.
+Levantar un container con la app web del GX29. Esta imágen Docker es pública y se encuentra en el repositorio [GeneXus en Docker Hub](https://hub.docker.com/orgs/genexus/repositories).
 
 Para eso lo único que hay que hacer es ejecutar el siguiebte comando:
 
 ```
-$ docker run --rm -p 8888:8080 -d genexus/gx29_web
+$ docker-compose up
 ```
 
 Esto levanta la web app en el puerto 8888 de la máquina de desarrollo y podemos acceder a la lista de speakers ejecutando la siguiente url en un browser.
 
-> http://localhost:8888/servlet/com.gx29.website.speakers
+> `http://localhost:8888/servlet/com.gx29.website.speakers`
+
+Docker Compose es una forma fácil de levantar una pequeña red de contenedores. Recientemente ha crecido su popularidad, impulsada por Docker, para ser utilizado en ambientes de producción.
+
+Para bajar los containers
+```
+docker-compose down
+```
 
 ## Demo 2 (Kubernetes)
 
-La segunda demo ya fué sí con Kubernetes. Levantaremos la web app en nuestro cluster y veremos cómo acceder a él.  
-Primero vamos a levantar el Dashboard Kubernetes. El Deashboard es una aplicación web que se comunica con el Master via la API y nos da UI de lo que está pasando. Para cuando uno arranca es muy útil.
+Levantaremos la web app en nuestro cluster y veremos cómo acceder a él.  
+Primero vamos a levantar el Dashboard Kubernetes. El Dashboard es una aplicación web que se comunica con el Master via la API y nos da UI de lo que está pasando. Para cuando uno arranca es muy útil.
 
 Como todo web app que se levanta en Kubernetes, para aplicar el dashboard a nuestro cluster hay que sguir los siguientes pasos. En un futuro los pasos se pueden verificar en el repositorio del [Kubernetes Dashboard](https://github.com/kubernetes/dashboard). 
 ```
@@ -78,3 +87,22 @@ $ kubectl get svc -n gx29
 De la lista de servicios nos interesa el de la web app (appgx29-web-svc) y de ese servicio, el puerto mapeado con el 8080 del servicio.  
 Con ese puerto basta con poner esta url en el browser y así poder ver la lista de oradores: `http://localhost:<port>/servlet/com.gx29.website.speakers`
 
+Pueden probar desde el dashboard matar un pod, o desde la consola con el comando `kubectl delete pod`.
+
+
+## Recursos
+
+Estos son algunos de los recursos que me pareció interesante que quedaran en el repo  
+Recurso|Descripción
+---|---
+pptx|Presentación PowerPoint de la charla
+[Kubernetes Up & Running](https://azure.microsoft.com/en-us/resources/kubernetes-up-and-running/)|Libro en pdf (gratis) muy bueno sobre Kubernetes
+[Kubernetes Documentation](https://kubernetes.io/docs/home/)|Documentación oficial de Kubernetes
+[GX29 in K8s with Istio](https://github.com/genexuslabs/gx29-kubernetes-sample)|Repo más avanzado que muestra cómo implementar Service Mesh con [Istio](http://istio.io/)
+[GeneXus Deployment Targets](https://github.com/genexuslabs/deployment-targets)|Los deployments targets de GeneXus son Open Source. Puede ver ahí cómo funciona el dpeloy y ayudar a mejorarlo.
+
+Y por último, hay muchos videos en YouTube que hablan de Kubernetes, éste me pareció realmente muy bueno para empezar.
+
+The Illustrated Children's Guide to Kubernetes
+
+[![The Illustrated Children's Guide to Kubernetes](https://img.youtube.com/vi/4ht22ReBjno/0.jpg)](https://www.youtube.com/watch?v=4ht22ReBjno)
