@@ -95,7 +95,7 @@ Pueden probar desde el dashboard matar un pod, o desde la consola con el comando
 Estos son algunos de los recursos que me pareció interesante que quedaran en el repo  
 Recurso|Descripción
 ---|---
-[GeneXus & Kubernetes](./res/GeneXus & Kubernetes.pptx)|Presentación PowerPoint de la charla
+[GeneXus & Kubernetes](./res/GeneXus%20&%20Kubernetes.pptx)|Presentación PowerPoint de la charla
 [Kubernetes Up & Running](https://azure.microsoft.com/en-us/resources/kubernetes-up-and-running/)|Libro en pdf (gratis) muy bueno sobre Kubernetes
 [Kubernetes Documentation](https://kubernetes.io/docs/home/)|Documentación oficial de Kubernetes
 [GX29 in K8s with Istio](https://github.com/genexuslabs/gx29-kubernetes-sample)|Repo más avanzado que muestra cómo implementar Service Mesh con [Istio](http://istio.io/)
