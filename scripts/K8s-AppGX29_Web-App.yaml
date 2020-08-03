@@ -28,7 +28,7 @@ metadata:
     du: AppGX29_Web
     version: v1
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: appgx29-web-app
