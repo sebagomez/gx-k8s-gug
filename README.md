@@ -2,7 +2,7 @@
 
 Este repositorio contiene los scripts de las demos y las ppts de la charla Introducción a Kubernetes con GeneXus dada al Grupo Usuarios GeneXus el 4 Agosto de 2020.  
 
-=== Próximamente link al video ===
+[![Introducción a Kubernetes con Genexus by Sebastian Gomez](https://img.youtube.com/vi/n2K5s-avkZk/0.jpg)](https://www.youtube.com/watch?v=n2K5s-avkZk)
 
 ## Pasos previos
 
